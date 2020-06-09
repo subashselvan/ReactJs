@@ -1,0 +1,96 @@
+Unit Testing
+-----
+  UNIT TESTING is a level of software testing where individual units/components of a software are tested. 
+  The purpose is to validate that each unit of the software performs as designed. 
+  A unit is the smallest testable part of any software.
+
+Mocha.js:
+-------
+  Mocha is a feature-rich JavaScript test framework running on Node.js 
+  and in the browser, making asynchronous testing simple and fun. 
+  Mocha tests run serially, allowing for flexible and accurate reporting, 
+  while mapping uncaught exceptions to the correct test cases. Hosted on GitHub.
+
+Chai.js:
+-----
+  Chai is a BDD / TDD assertion library for node and the browser that can be delightfully 
+  paired with any javascript testing framework.
+  expect, should, assert 
+
+Enzyme.js:
+-----
+  Enzyme is a JavaScript Testing utility for React that makes it easier to assert, 
+  manipulate, and traverse your React Components’ output.
+
+Sinon.js: (we won't learn Sinon in this course)
+----
+  Standalone test spies, stubs and mocks for JavaScript.
+  Works with any unit testing framework.
+=================
+
+1.Create a React App.
+  npx create-react-app mocha-testing
+
+2.Install Mocha, Chai and Enzyme.
+  Mocha is a JavaScript test framework for Node.js programs.
+  Chai is an assertion library.
+  Enzyme is a JavaScript Testing utility for React Components testing.
+    npm install mocha --save-dev
+    npm install chai chai-enzyme --save-dev
+    npm install enzyme enzyme-adapter-react-16 cheerio --save-dev
+
+3.Install Babel.
+  Babel is an extensions for compiling ES6 to ECMAScript5 code and JSX for React.
+    npm install @babel/core @babel/register --save-dev
+    npm install babel-preset-react-app-babel-7 --save-dev
+    npm install @babel/plugin-transform-modules-commonjs --save-dev
+    npm install babel-plugin-inline-react-svg --save-dev
+    npm install ignore-styles --save-dev
+
+4.Configure Babel. 
+  Create babel.config.js file and add following information.
+  A very important step to make Mocha testing work with your React App.
+    module.exports = (api) => {
+        const presets = ["react-app"];
+        const plugins = [
+            "@babel/plugin-transform-modules-commonjs",
+            "inline-react-svg"
+        ]; 
+      
+        api.cache(false); 
+      
+        return {
+            presets,
+            plugins
+        };
+    };
+
+5.Adjust test script in package.json file.
+  This will allow us to run npm test command and have script run all the tests in src/test/ directory.
+  "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "NODE_ENV=test mocha --require @babel/register --require       ignore-styles src/test/*.test.js",
+      "eject": "react-scripts eject"
+  }
+
+6.Create test folder in src/ directory and add App.test.js file inside. 
+  Your current folder structure should look like this.
+
+7. Refer App.test.ts file for more tests
+
+8. Learn about testing states here 
+  https://medium.com/@newyork.anthonyng/testing-react-components-state-b57bfc712b90
+
+9. Learn about Testing Reducer here 
+  https://medium.com/free-code-camp/simple-react-testing-d9e25ec87e2
+
+
+Read more:
+  https://medium.com/@tatismolin/testing-your-react-app-with-mocha-chai-and-other-beverages-e9a16ca7b9bb
+  https://www.robinwieruch.de/react-testing-mocha-chai-enzyme-sinon
+  https://enzymejs.github.io/enzyme/docs/guides/mocha.html
+  https://semaphoreci.com/community/tutorials/testing-react-components-with-enzyme-and-mocha
+  https://medium.com/@houstoncbreedlove/basics-intro-to-testing-react-components-with-mocha-chai-enzyme-and-sinon-c8b82ce58df8
+  
+
